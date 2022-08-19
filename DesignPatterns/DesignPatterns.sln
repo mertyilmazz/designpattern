@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32630.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrategyPattern", "StrategyPattern\StrategyPattern.csproj", "{6D64191B-4D3B-4449-859B-D3851268891B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrategyPattern", "StrategyPattern\StrategyPattern.csproj", "{6D64191B-4D3B-4449-859B-D3851268891B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp.Template", "WebApp.Template\WebApp.Template.csproj", "{93169E25-331F-41E9-ADF3-342B49611B8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6D64191B-4D3B-4449-859B-D3851268891B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D64191B-4D3B-4449-859B-D3851268891B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D64191B-4D3B-4449-859B-D3851268891B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93169E25-331F-41E9-ADF3-342B49611B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93169E25-331F-41E9-ADF3-342B49611B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93169E25-331F-41E9-ADF3-342B49611B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93169E25-331F-41E9-ADF3-342B49611B8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
