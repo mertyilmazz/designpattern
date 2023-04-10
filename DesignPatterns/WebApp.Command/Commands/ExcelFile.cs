@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApp.Template.Commands
+namespace WebApp.Command.Commands
 {
     public class ExcelFile<T>
     {
