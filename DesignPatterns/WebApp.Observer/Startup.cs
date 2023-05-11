@@ -1,16 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApp.Observer.Models;
+using WebApp.Observer.Observer;
 
 namespace WebApp.Observer
 {
@@ -26,6 +22,19 @@ namespace WebApp.Observer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddSingleton<UserObserverSubject>(sp =>
+            {
+                UserObserverSubject userObserverSubject = new();
+                userObserverSubject.RegisterObserver(new UserObserverWriteToConsole(sp));
+                userObserverSubject.RegisterObserver(new UserObserverCreateDiscount(sp));
+                userObserverSubject.RegisterObserver(new UserObserversendEmail(sp));
+
+                return userObserverSubject;
+            });
+
             services.AddHttpContextAccessor();
             services.AddDbContext<AppIdentityDbContext>(options =>
             {

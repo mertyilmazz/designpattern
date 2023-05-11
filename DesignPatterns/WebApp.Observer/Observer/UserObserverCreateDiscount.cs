@@ -14,12 +14,13 @@ namespace WebApp.Observer.Observer
             _serviceProvider = serviceProvider;
         }
 
-        public void CreateUser(AppUser user)
+        public void UserCreated(AppUser user)
         {
             var logger = _serviceProvider.GetRequiredService<ILogger<UserObserverCreateDiscount>>();
             logger.LogInformation($"user created : Id= {user.Id}");
 
-            var context = _serviceProvider.GetRequiredService<AppIdentityDbContext>();
+            using var scope = _serviceProvider.CreateScope();            
+            var context = scope.ServiceProvider.GetRequiredService<AppIdentityDbContext>();
 
             var discount = new Discount()
             {
