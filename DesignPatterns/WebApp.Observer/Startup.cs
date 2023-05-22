@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -5,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 using WebApp.Observer.Models;
 using WebApp.Observer.Observer;
 
@@ -23,8 +25,9 @@ namespace WebApp.Observer
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
+            // We are using MediatR instead of this pattern
             services.AddSingleton<UserObserverSubject>(sp =>
             {
                 UserObserverSubject userObserverSubject = new();

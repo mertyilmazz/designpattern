@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.Observer.Events;
 using WebApp.Observer.Models;
 using WebApp.Observer.Observer;
 
@@ -15,16 +17,16 @@ namespace WebApp.Observer.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserObserverSubject _userObserverSubject;
-        //private readonly IMediator _mediator;
+        private readonly IMediator _mediator;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,UserObserverSubject userObserverSubject
-            //IMediator mediator
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, UserObserverSubject userObserverSubject
+            , IMediator mediator
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _userObserverSubject = userObserverSubject;
-            //_mediator = mediator;
+            _mediator = mediator;
         }
 
         public IActionResult Login()
@@ -71,8 +73,8 @@ namespace WebApp.Observer.Controllers
 
             if (identityResult.Succeeded)
             {
-                //await _mediator.Publish(new UserCreatedEvent() { AppUser = appUser });
-                  _userObserverSubject.NotifyObserver(appUser);
+                await _mediator.Publish(new UserCreatedEvent() { AppUser = appUser });
+                //_userObserverSubject.NotifyObserver(appUser);
 
                 ViewBag.message = "Üyelik işlemi başarıyla gerçekleşti.";
             }
